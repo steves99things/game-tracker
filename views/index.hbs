@@ -1,0 +1,128 @@
+<div class="container">
+	<h1>{{title}}</h1>
+	<hr>
+
+	<form action="/match" method="post">
+		<div class="form-horizontal">
+			{{!-- <legend>You</legend> --}}
+			<div class="form-group">
+				<label for="player-select" class="col-sm-2 control-label">You</label>
+				<div class="col-sm-10">
+					<select name="playerSelect" id="player-select" class="form-control" required>
+						<option value="" label="" selected disabled>Select yourself...</option>
+						{{#players}}
+							<option value="{{email}}" label="{{name}}"></option>
+						{{/players}}
+						<option value="new">Create New Player</option>
+					</select>
+				</div>
+			</div>
+			<div id="player-group" style="display:none">
+				<div class="form-group">
+					<label for="player-name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" name="playerName" id="player-name" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="player-email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" name="playerEmail" id="player-email" class="form-control" required>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="player-score" class="col-sm-2 control-label">Score</label>
+				<div class="col-sm-10">
+					<input type="number" name="playerScore" id="player-score" class="form-control" required>
+				</div>
+			</div>
+		{{!-- </div> --}}
+
+		<hr>
+		
+		{{!-- <div class="form-horizontal"> --}}
+			{{!-- <legend>Your Opponent</legend> --}}
+			<div class="form-group">
+				<label for="player-select" class="col-sm-2 control-label">Your Opponent</label>
+				<div class="col-sm-10">
+					<select name="opponentSelect" id="opponent-select" class="form-control" required>
+						<option value="" label="" selected disabled>Select your opponent...</option>
+						{{#players}}
+							<option value="{{email}}" label="{{name}}"></option>
+						{{/players}}
+						<option value="new">Create New Player</option>
+					</select>
+				</div>
+			</div>
+			<div id="opponent-group" style="display:none">
+				<div class="form-group">
+					<label for="opponent-name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" name="opponentName" id="opponent-name" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="opponent-email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" name="opponentEmail" id="opponent-email" class="form-control" required>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="opponent-score" class="col-sm-2 control-label">Score</label>
+				<div class="col-sm-10">
+					<input type="number" name="opponentScore" id="opponent-score" class="form-control" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+		var $playerSelect = $('#player-select');
+		var $opponentSelect = $('#opponent-select');
+
+		// set player info from dropdown
+		$playerSelect.change(function() {
+			var $email = $('#player-select').val();
+			var $name = $('#player-select option:selected').attr('label');
+
+			if ($('#player-select').val() == 'new') {
+				$email = '';
+				$('#player-group').show();
+			} else {
+				$('#player-group').hide();
+			}
+
+			$('#player-name').val($name);
+			$('#player-email').val($email);
+		});
+
+		// set the opponent info from dropdown
+		$opponentSelect.change(function() {
+			var $email = $('#opponent-select').val();
+			var $name = $('#opponent-select option:selected').attr('label');
+
+			if ($('#opponent-select').val() == 'new') {
+				$email = '';
+				$('#opponent-group').show();
+			} else {
+				$('#opponent-group').hide();
+			}
+
+			$('#opponent-name').val($name);
+			$('#opponent-email').val($email);
+		});
+
+	});
+</script>

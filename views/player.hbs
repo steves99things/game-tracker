@@ -1,0 +1,35 @@
+<div class="container">
+	<ul class="breadcrumb">
+		<li><a href="/leaderboard">Leaderboard</a></li>
+		<li class="active">{{title}}</li>
+	</ul>
+	<h1>{{title}}</h1>
+
+	<div class="col-sm-6">
+		<h2>{{wins.length}} Wins</h2>
+		<table class="table table-condensed">
+			<tbody>
+				{{#wins}}
+					<tr>
+						<td>{{player.score}} to {{opponent.score}} against <a href="/player/{{opponent.id}}">{{opponent.name}}</a></td>
+					</tr>
+				{{/wins}}
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm-6">
+		<h2>{{losses.length}} Losses</h2>
+		<table class="table table-condensed">
+			<tbody>
+				{{#losses}}
+					<tr>
+						<td>{{player.score}} to {{opponent.score}} against <a href="/player/{{opponent.id}}">{{opponent.name}}</a></td>
+					</tr>
+				{{/losses}}
+			</tbody>
+		</table>
+	</div>
+
+
+	
+</div>

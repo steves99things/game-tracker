@@ -1,0 +1,21 @@
+<div class="container">
+	<h1>{{title}}</h1>
+	<hr>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th>Player</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#players}}
+			<tr>
+				<td>{{rank}}</td>
+				<td><a href="player/{{this._id}}">{{name}} - {{email}}</a></td>
+			</tr>
+		{{/players}}
+		</tbody>
+	</table>
+</div>
